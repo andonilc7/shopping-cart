@@ -1,0 +1,30 @@
+This is used for planning the application out.
+
+Pages
+- I will have 3 pages: home, shop, and cart (which will have icon and # of elements)
+- Home page will just be some text and images about the shop; maybe include some items as well
+- Shop page will be a grid of items (flexible using css grid); can adjust number of items and add to cart
+- cart will also be able to adjust number of items as well as remove. also have button to checkout (will have no functionality for purpose of this project)
+
+Components
+- Components folder
+  - Nav bar folder
+    - nav.jsx : has home, shop, and checkout with num of items (planning to do show num of items as every single item, even if multiple of same item)
+  - Home page folder
+    - home.jsx
+  - Shop page folder
+    - shop.jsx
+    - itemcard.jsx
+  - cart folder
+    - cart.jsx
+    - maybe do component for each item shown in cart
+  - maybe do component for the input and the incrementing (can use in shop page for each item as well as cart page for each item)
+- app.jsx
+  - have state for cart (pass this into cart, pass setCart into shop)
+  - also handle the effect for fetching products (only on mount)
+  - pass products into shop, pass cart into cart
+
+
+
+Styling
+- I will be using CSS-in-JS
