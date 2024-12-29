@@ -22,6 +22,7 @@ Components
 - app.jsx
   - have state for cart (pass this into cart, pass setCart into shop)
   - also handle the effect for fetching products (only on mount)
+  - also have the shared layout (will put navbar into here and then use <Outlet/> to render children based on router)
   - pass products into shop, pass cart into cart
 
 
