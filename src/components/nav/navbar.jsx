@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 // Creating styled components (do outside of component, not in!)
 const Nav = styled.nav`
-  padding: 10px;
+  padding: 22px;
   flex: 1;
 `;
 
@@ -11,7 +11,7 @@ const NavList = styled.ul`
   display: flex;
   list-style-type: none;
   justify-content: space-evenly;
-  padding: 0
+  padding: 0;
 `;
 
 const NavItem = styled.li`

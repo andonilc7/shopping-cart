@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {Outlet} from 'react-router-dom'
 import './App.css'
 import styled from 'styled-components'
@@ -7,7 +7,8 @@ import NavBar from './components/nav/navbar'
 const PageCont = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  align-items: center;
+  background-color: #F5F7FA;
 `
 
 const StyledHeader = styled.header`
@@ -33,13 +34,31 @@ const MainCont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 10px 50px;
   flex: 1;
   background-color: #F5F7FA;
-
+  max-width: 2000px;
 `;
 
 function App() {
+  const [products, setProducts] = useState([])
+  const [loadingProducts, setLoadingProducts] = useState(true)
+
+  //runs only on mount
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products", {mode: "cors"})
+    .then(response => {
+      if (response.status >= 400) {
+        throw new Error("Server Error")
+      }
+      return response.json()
+    })
+    .then(response => {
+      console.log(response);
+      return setProducts(response)})
+    .catch((error) => {console.error(error)})
+    .finally(() => setLoadingProducts(false))
+  }, [])
 
   return (
     <PageCont>
@@ -48,7 +67,7 @@ function App() {
         <StyledNavBar/>
       </StyledHeader>
       <MainCont>
-        <Outlet/>
+        <Outlet context={{products, loadingProducts}}/>
       </MainCont>
     </PageCont>
   )

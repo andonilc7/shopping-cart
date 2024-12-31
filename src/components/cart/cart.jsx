@@ -1,9 +1,12 @@
+import styled from "styled-components"
+import { StyledH2 } from "../utility"
+
 function Cart() {
 
   return (
-    <div>
-      <p>Hello this is cart page</p>
-    </div>
+    <>
+      <StyledH2>Your Cart</StyledH2>
+    </>
   )
 }
 
