@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useState } from "react";
+import QuantityAdjuster from "./QuantityAdjuster";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -23,12 +25,19 @@ const ProductImage = styled.img`
   margin: 10px 0;
 `;
 function ItemCard({product}) {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    
+  }
+
   return (
     <StyledDiv>
       <ProductImage src={product.image}/>
       <ProductTitle>{product.title}</ProductTitle>
       <p>${product.price}</p>
-      
+      <QuantityAdjuster quantity={quantity} setQuantity={setQuantity} />
+      <button>Add to Cart</button>
     </StyledDiv>
   )
 }
