@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
+
+
 // Creating styled components (do outside of component, not in!)
 const Nav = styled.nav`
   padding: 22px;
@@ -25,14 +27,14 @@ const StyledLink = styled(Link)`
 `;
 
 // putting the className prop is NEEDED in order to the styled(NavBar) in a higher component to apply custom styles!!!
-function NavBar({className}) {
+function NavBar({className, numOfCartItems}) {
 
   return (
     <Nav className={className}>
       <NavList>
         <NavItem><StyledLink to="/">Home</StyledLink></NavItem>
         <NavItem><StyledLink to="/shop">Shop</StyledLink></NavItem>
-        <NavItem><StyledLink to="/cart">Cart</StyledLink></NavItem>
+        <NavItem><StyledLink to="/cart">Cart ({numOfCartItems})</StyledLink></NavItem>
       </NavList>
     </Nav>
   )

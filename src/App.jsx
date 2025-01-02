@@ -44,6 +44,10 @@ function App() {
   const [products, setProducts] = useState([])
   const [loadingProducts, setLoadingProducts] = useState(true)
 
+  const [cartItems, setCartItems] = useState([])
+  const numOfCartItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // console.log(numOfCartItems)
+
   //runs only on mount
   useEffect(() => {
     fetch("https://fakestoreapi.com/products", {mode: "cors"})
@@ -64,10 +68,10 @@ function App() {
     <PageCont>
       <StyledHeader>
         <StyledH1>Mock Store</StyledH1> {/* Page title should go here */}
-        <StyledNavBar/>
+        <StyledNavBar numOfCartItems={numOfCartItems}/>
       </StyledHeader>
       <MainCont>
-        <Outlet context={{products, loadingProducts}}/>
+        <Outlet context={{products, loadingProducts, cartItems, setCartItems}}/>
       </MainCont>
     </PageCont>
   )

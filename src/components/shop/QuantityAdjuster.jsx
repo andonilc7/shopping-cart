@@ -3,6 +3,11 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 5px 0;
+`;
+
+const StyledInput = styled.input`
+  text-align: center;
 `;
 
 function QuantityAdjuster({quantity, setQuantity}) {
@@ -29,10 +34,10 @@ function QuantityAdjuster({quantity, setQuantity}) {
       <button
       onClick={handleDecrement}
       >-</button>
-      <input 
+      <StyledInput 
       value={quantity} 
       onChange={handleEditInput}
-      ></input>
+      ></StyledInput>
       <button
       onClick={handleIncrement}
       >+</button>
