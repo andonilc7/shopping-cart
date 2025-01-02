@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import QuantityAdjuster from "./ShopQuantityAdjuster";
+import QuantityAdjuster from "./CartQuantityAdjuster";
 import { useOutletContext } from "react-router-dom"
 
 
@@ -10,8 +10,10 @@ const StyledDiv = styled.div`
   align-items: center;
   border-radius: 10px;
   padding: 15px 20px;
+  margin-bottom: 15px;
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
 `
 
 const ProductTitle = styled.h3`
@@ -37,41 +39,39 @@ const Price = styled.p`
   
 `
 
-function ItemCard({product}) {
+function CartItem({product}) {
   const {setCartItems} = useOutletContext();
-  const [quantity, setQuantity] = useState(1);
+  
+  //dont need state for quantity here because we want it to automatically update the state of the cart items that we passed in with context
 
-  const handleAddToCart = () => {
-    //saving as lcoal variable to avoid any problems with batching state
-    const currQuantity = quantity;
-    setCartItems(prevCartItems => {
-      const sameExistingItem = prevCartItems.find(item => item.id === product.id);
-
-      if (sameExistingItem) {
-        //update quantity of the item if already exists in cart
-        return prevCartItems.map(item => {
-          if (item.id === product.id) {
-            return {...item, quantity: item.quantity + quantity}
-          } else {
-            return item
-          }
-        });
+  const setQuantity = (newQuantity) => {
+    setCartItems(prevCartItems => prevCartItems.map((item) => {
+      if (item.id === product.id ) {
+        return {...item, quantity: newQuantity }
       } else {
-        return [...prevCartItems, {...product, quantity: quantity}];
+        return item
       }
-    });
-    setQuantity(1)
+    }))
+  }
+
+  const removeFromCart = () => {
+    setCartItems(prevCartItems => 
+      //filtering cart to only the items that dont match product's id
+      prevCartItems.filter(item => item.id !== product.id
+      )
+    )
   }
 
   return (
     <StyledDiv>
       <ProductImage src={product.image}/>
       <ProductTitle>{product.title}</ProductTitle>
+      {/* toFixed() converts to string, so doing that part just for displaying properly */}
       <Price>${product.price.toFixed(2)}</Price>
-      <QuantityAdjuster quantity={quantity} setQuantity={setQuantity} />
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <QuantityAdjuster quantity={product.quantity} setQuantity={setQuantity} />
+      <button onClick={removeFromCart}>Remove from Cart</button>
     </StyledDiv>
   )
 }
 
-export default ItemCard
+export default CartItem

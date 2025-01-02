@@ -10,14 +10,14 @@ const StyledInput = styled.input`
   text-align: center;
 `;
 
-function QuantityAdjuster({quantity, setQuantity}) {
+function ShopQuantityAdjuster({quantity, setQuantity}) {
   const handleIncrement = () => {
     setQuantity(quantity => quantity+1)
   }
 
   const handleDecrement = () => {
-    // only decreases if quantity is above 0
-    if (quantity > 0) {
+    // only decreases if quantity is above 1 (no reason to add quantity of 0 to cart)
+    if (quantity > 1) {
       setQuantity(quantity => quantity-1)
     }
   }
@@ -45,4 +45,4 @@ function QuantityAdjuster({quantity, setQuantity}) {
   )
 }
 
-export default QuantityAdjuster
+export default ShopQuantityAdjuster

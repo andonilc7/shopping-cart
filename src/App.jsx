@@ -9,6 +9,7 @@ const PageCont = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #F5F7FA;
+  min-height: 100%;
 `
 
 const StyledHeader = styled.header`
@@ -34,7 +35,7 @@ const MainCont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 50px;
+  padding: 10px 0;
   flex: 1;
   background-color: #F5F7FA;
   max-width: 2000px;
